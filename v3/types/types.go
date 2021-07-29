@@ -119,3 +119,9 @@ type ExchangeRatesResponse struct {
 type GlobalResponse struct {
 	Data Global `json:"data"`
 }
+
+// ExchangesBase https://api.coingecko.com/api/v3/exchanges/list
+type ExchangesBase []ExchangeBase
+
+// ExchangesDetail https://api.coingecko.com/api/v3/exchanges
+type ExchangesDetail []ExchangeDetail
