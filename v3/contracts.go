@@ -30,13 +30,11 @@ func (c *Client) CoinContract(networkID, contract string,
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println("got resp")
 
 	var data *types.CoinsID
 	err = json.Unmarshal(resp, &data)
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println("unmarshal resp done")
 	return data, nil
 }
