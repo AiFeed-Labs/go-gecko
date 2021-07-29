@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/url"
+	"strings"
 
 	"github.com/billzong/go-gecko/format"
 	"github.com/billzong/go-gecko/v3/types"
@@ -40,6 +41,27 @@ func (c *Client) ExchangesList() (*types.ExchangesBase, error) {
 		return nil, err
 	}
 	var data *types.ExchangesBase
+	err = json.Unmarshal(resp, &data)
+	if err != nil {
+		return nil, err
+	}
+	return data, nil
+}
+
+// Get exchange tickers (paginated)
+func (c *Client) ExchangeIDTickers(exchangeID string, coinIDs []string) (*types.ExchangeIDTickers, error) {
+	params := url.Values{}
+	coindIDsParam := strings.Join(coinIDs[:], ",")
+
+	params.Add("coin_ids", coindIDsParam)
+
+	url := fmt.Sprintf("%s/exchanges/%s/tickers?%s", baseURL, exchangeID, params.Encode())
+	resp, err := c.MakeReq(url)
+	if err != nil {
+		return nil, err
+	}
+
+	var data *types.ExchangeIDTickers
 	err = json.Unmarshal(resp, &data)
 	if err != nil {
 		return nil, err
