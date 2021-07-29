@@ -35,7 +35,7 @@ func TestSimpleSinglePrice(t *testing.T) {
 	if err != nil {
 		t.FailNow()
 	}
-	if simplePrice.ID != "bitcoin" || simplePrice.Currency != "usd" || simplePrice.MarketPrice != float32(5013.61) {
+	if simplePrice.ID != "bitcoin" || simplePrice.Currency != "usd" || simplePrice.MarketPrice != float64(5013.61) {
 		t.FailNow()
 	}
 }

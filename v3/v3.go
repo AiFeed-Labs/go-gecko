@@ -94,7 +94,7 @@ func (c *Client) SimpleSinglePrice(id string, vsCurrency string) (*types.SimpleS
 }
 
 // SimplePrice /simple/price Multiple ID and Currency (ids, vs_currencies)
-func (c *Client) SimplePrice(ids []string, vsCurrencies []string) (*map[string]map[string]float32, error) {
+func (c *Client) SimplePrice(ids []string, vsCurrencies []string) (*map[string]map[string]float64, error) {
 	params := url.Values{}
 	idsParam := strings.Join(ids[:], ",")
 	vsCurrenciesParam := strings.Join(vsCurrencies[:], ",")
@@ -108,7 +108,7 @@ func (c *Client) SimplePrice(ids []string, vsCurrencies []string) (*map[string]m
 		return nil, err
 	}
 
-	t := make(map[string]map[string]float32)
+	t := make(map[string]map[string]float64)
 	err = json.Unmarshal(resp, &t)
 	if err != nil {
 		return nil, err
