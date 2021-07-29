@@ -170,14 +170,21 @@ type TickerItem struct {
 		Identifier       string `json:"identifier"`
 		TradingIncentive bool   `json:"has_trading_incentive"`
 	} `json:"market"`
-	Last            float64            `json:"last"`
-	ConvertedLast   map[string]float64 `json:"converted_last"`
-	Volume          float64            `json:"volume"`
-	ConvertedVolume map[string]float64 `json:"converted_volume"`
-	Timestamp       string             `json:"timestamp"`
-	IsAnomaly       bool               `json:"is_anomaly"`
-	IsStale         bool               `json:"is_stale"`
-	CoinID          string             `json:"coin_id"`
+	Last                   float64            `json:"last"`
+	Volume                 float64            `json:"volume"`
+	ConvertedLast          map[string]float64 `json:"converted_last"`
+	ConvertedVolume        map[string]float64 `json:"converted_volume"`
+	TrustScore             *string            `json:"trust_score"`
+	BidAskSpreadPercentage *float32           `json:"bid_ask_spread_percentage"`
+	Timestamp              string             `json:"timestamp"`
+	LastTradedAt           *string            `json:"last_traded_at"`
+	LastFetchAt            *string            `json:"last_fetch_at"`
+	IsAnomaly              bool               `json:"is_anomaly"`
+	IsStale                bool               `json:"is_stale"`
+	TradeURL               *string            `json:"trade_url"`
+	TokenInfoURL           *string            `json:"token_info_url"`
+	CoinID                 string             `json:"coin_id"`
+	TargetCoinID           string             `json:"target_coin_id,omitempty"`
 }
 
 // StatusUpdateItem for BEAM
