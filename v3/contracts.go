@@ -31,10 +31,10 @@ func (c *Client) CoinContract(networkID, contract string,
 		return nil, err
 	}
 
-	var data *types.CoinsID
+	var data types.CoinsID
 	err = json.Unmarshal(resp, &data)
 	if err != nil {
 		return nil, err
 	}
-	return data, nil
+	return &data, nil
 }

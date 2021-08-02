@@ -11,7 +11,7 @@ import (
 )
 
 // Exchanges list, paginated
-func (c *Client) Exchanges(perPage int, page int) (*types.ExchangesDetail, error) {
+func (c *Client) Exchanges(perPage int, page int) (types.ExchangesDetail, error) {
 	params := url.Values{}
 	// per_page
 	if perPage <= 0 || perPage > 250 {
@@ -25,7 +25,7 @@ func (c *Client) Exchanges(perPage int, page int) (*types.ExchangesDetail, error
 	if err != nil {
 		return nil, err
 	}
-	var data *types.ExchangesDetail
+	var data types.ExchangesDetail
 	err = json.Unmarshal(resp, &data)
 	if err != nil {
 		return nil, err
@@ -34,13 +34,13 @@ func (c *Client) Exchanges(perPage int, page int) (*types.ExchangesDetail, error
 }
 
 // Exchanges list, no pagination required
-func (c *Client) ExchangesList() (*types.ExchangesBase, error) {
+func (c *Client) ExchangesList() (types.ExchangesBase, error) {
 	url := fmt.Sprintf("%s/exchanges/list", baseURL)
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err
 	}
-	var data *types.ExchangesBase
+	var data types.ExchangesBase
 	err = json.Unmarshal(resp, &data)
 	if err != nil {
 		return nil, err
@@ -61,10 +61,10 @@ func (c *Client) ExchangeIDTickers(exchangeID string, coinIDs []string) (*types.
 		return nil, err
 	}
 
-	var data *types.ExchangeIDTickers
+	var data types.ExchangeIDTickers
 	err = json.Unmarshal(resp, &data)
 	if err != nil {
 		return nil, err
 	}
-	return data, nil
+	return &data, nil
 }

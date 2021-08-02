@@ -11,14 +11,14 @@ import (
 )
 
 // CoinsList /coins/list
-func (c *Client) CoinsList() (*types.CoinList, error) {
+func (c *Client) CoinsList() (types.CoinList, error) {
 	url := fmt.Sprintf("%s/coins/list", baseURL)
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err
 	}
 
-	var data *types.CoinList
+	var data types.CoinList
 	err = json.Unmarshal(resp, &data)
 	if err != nil {
 		return nil, err
@@ -27,7 +27,7 @@ func (c *Client) CoinsList() (*types.CoinList, error) {
 }
 
 // CoinsMarket /coins/market
-func (c *Client) CoinsMarket(vsCurrency string, ids []string, order string, perPage int, page int, sparkline bool, priceChangePercentage []string) (*types.CoinsMarket, error) {
+func (c *Client) CoinsMarket(vsCurrency string, ids []string, order string, perPage int, page int, sparkline bool, priceChangePercentage []string) (types.CoinsMarket, error) {
 	if len(vsCurrency) == 0 {
 		return nil, fmt.Errorf("vs_currency is required")
 	}
@@ -62,7 +62,7 @@ func (c *Client) CoinsMarket(vsCurrency string, ids []string, order string, perP
 	if err != nil {
 		return nil, err
 	}
-	var data *types.CoinsMarket
+	var data types.CoinsMarket
 	err = json.Unmarshal(resp, &data)
 	if err != nil {
 		return nil, err
@@ -89,12 +89,12 @@ func (c *Client) CoinsID(id string, localization bool, tickers bool, marketData 
 		return nil, err
 	}
 
-	var data *types.CoinsID
+	var data types.CoinsID
 	err = json.Unmarshal(resp, &data)
 	if err != nil {
 		return nil, err
 	}
-	return data, nil
+	return &data, nil
 }
 
 // CoinsIDTickers /coins/{id}/tickers
@@ -111,12 +111,12 @@ func (c *Client) CoinsIDTickers(id string, page int) (*types.CoinsIDTickers, err
 	if err != nil {
 		return nil, err
 	}
-	var data *types.CoinsIDTickers
+	var data types.CoinsIDTickers
 	err = json.Unmarshal(resp, &data)
 	if err != nil {
 		return nil, err
 	}
-	return data, nil
+	return &data, nil
 }
 
 // CoinsIDHistory /coins/{id}/history?date={date}&localization=false
@@ -157,13 +157,13 @@ func (c *Client) CoinsIDMarketChart(id string, vs_currency string, days string) 
 		return nil, err
 	}
 
-	m := types.CoinsIDMarketChart{}
-	err = json.Unmarshal(resp, &m)
+	var data types.CoinsIDMarketChart
+	err = json.Unmarshal(resp, &data)
 	if err != nil {
-		return &m, err
+		return nil, err
 	}
 
-	return &m, nil
+	return &data, nil
 }
 
 // CoinsIDStatusUpdates

@@ -16,10 +16,10 @@ type SimpleSinglePrice struct {
 type SimpleSupportedVSCurrencies []string
 
 // CoinList https://api.coingecko.com/api/v3/coins/list
-type CoinList []CoinsListItem
+type CoinList []*CoinsListItem
 
 // CoinsMarket https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false
-type CoinsMarket []CoinsMarketItem
+type CoinsMarket []*CoinsMarketItem
 
 // CoinsID https://api.coingecko.com/api/v3/coins/bitcoin
 type CoinsID struct {
@@ -44,15 +44,15 @@ type CoinsID struct {
 	CommunityData       *CommunityDataItem  `json:"community_data"`
 	DeveloperData       *DeveloperDataItem  `json:"developer_data"`
 	PublicInterestStats *PublicInterestItem `json:"public_interest_stats"`
-	StatusUpdates       *[]StatusUpdateItem `json:"status_updates"`
+	StatusUpdates       []*StatusUpdateItem `json:"status_updates"`
 	LastUpdated         string              `json:"last_updated"`
-	Tickers             *[]TickerItem       `json:"tickers"`
+	Tickers             []*TickerItem       `json:"tickers"`
 }
 
 // CoinsIDTickers https://api.coingecko.com/api/v3/coins/steem/tickers?page=1
 type CoinsIDTickers struct {
-	Name    string       `json:"name"`
-	Tickers []TickerItem `json:"tickers"`
+	Name    string        `json:"name"`
+	Tickers []*TickerItem `json:"tickers"`
 }
 
 // CoinsIDHistory https://api.coingecko.com/api/v3/coins/steem/history?date=30-12-2018
@@ -69,9 +69,9 @@ type CoinsIDHistory struct {
 // CoinsIDMarketChart https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1
 type CoinsIDMarketChart struct {
 	coinBaseStruct
-	Prices       *[]ChartItem `json:"prices"`
-	MarketCaps   *[]ChartItem `json:"market_caps"`
-	TotalVolumes *[]ChartItem `json:"total_volumes"`
+	Prices       []*ChartItem `json:"prices"`
+	MarketCaps   []*ChartItem `json:"market_caps"`
+	TotalVolumes []*ChartItem `json:"total_volumes"`
 }
 
 // CoinsIDStatusUpdates
@@ -102,7 +102,7 @@ type CoinsIDMarketChart struct {
 
 // EventsCountries https://api.coingecko.com/api/v3/events/countries
 type EventsCountries struct {
-	Data []EventCountryItem `json:"data"`
+	Data []*EventCountryItem `json:"data"`
 }
 
 // EventsTypes https://api.coingecko.com/api/v3/events/types
@@ -122,13 +122,13 @@ type GlobalResponse struct {
 }
 
 // ExchangesBase https://api.coingecko.com/api/v3/exchanges/list
-type ExchangesBase []ExchangeBase
+type ExchangesBase []*ExchangeBase
 
 // ExchangesDetail https://api.coingecko.com/api/v3/exchanges
-type ExchangesDetail []ExchangeDetail
+type ExchangesDetail []*ExchangeDetail
 
 // ExchangeIDTickers https://api.coingecko.com/api/v3/exchanges/{id}/tickers
 type ExchangeIDTickers struct {
-	Name    string       `json:"name"`
-	Tickers []TickerItem `json:"tickers"`
+	Name    string        `json:"name"`
+	Tickers []*TickerItem `json:"tickers"`
 }

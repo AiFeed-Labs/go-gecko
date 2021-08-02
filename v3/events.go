@@ -8,13 +8,13 @@ import (
 )
 
 // EventsCountries https://api.coingecko.com/api/v3/events/countries
-func (c *Client) EventsCountries() ([]types.EventCountryItem, error) {
+func (c *Client) EventsCountries() ([]*types.EventCountryItem, error) {
 	url := fmt.Sprintf("%s/events/countries", baseURL)
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err
 	}
-	var data *types.EventsCountries
+	var data types.EventsCountries
 	err = json.Unmarshal(resp, &data)
 	if err != nil {
 		return nil, err
