@@ -25,6 +25,7 @@ type CoinsMarket []*CoinsMarketItem
 type CoinsID struct {
 	coinBaseStruct
 	AssetPlatformID     string              `json:"asset_platform_id"`
+	Platforms           map[string]string   `json:"platforms"`
 	BlockTimeInMin      int32               `json:"block_time_in_minutes"`
 	Categories          []string            `json:"categories"`
 	Localization        LocalizationItem    `json:"localization"`
