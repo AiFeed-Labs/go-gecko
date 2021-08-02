@@ -24,6 +24,7 @@ type CoinsMarket []CoinsMarketItem
 // CoinsID https://api.coingecko.com/api/v3/coins/bitcoin
 type CoinsID struct {
 	coinBaseStruct
+	AssetPlatformID     string              `json:"asset_platform_id"`
 	BlockTimeInMin      int32               `json:"block_time_in_minutes"`
 	Categories          []string            `json:"categories"`
 	Localization        LocalizationItem    `json:"localization"`
