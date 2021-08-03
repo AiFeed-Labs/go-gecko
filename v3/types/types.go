@@ -27,6 +27,7 @@ type CoinsID struct {
 	AssetPlatformID     string              `json:"asset_platform_id"`
 	Platforms           map[string]string   `json:"platforms"`
 	BlockTimeInMin      int32               `json:"block_time_in_minutes"`
+	HashingAlgorithm    HashingAlgorithm    `json:"hashing_algorithm"`
 	Categories          []string            `json:"categories"`
 	Localization        LocalizationItem    `json:"localization"`
 	Description         DescriptionItem     `json:"description"`

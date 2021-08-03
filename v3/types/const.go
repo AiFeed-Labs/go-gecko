@@ -26,3 +26,10 @@ var CoinDecmialsMap = map[string]int{
 	CoinNetworkIDHuobi:           CoinDecimalsHuobi,
 	CoinNetworkIDMatic:           CoinDecimalsMatic,
 }
+
+type HashingAlgorithm string
+
+const (
+	HashingAlgorithmEthash = HashingAlgorithm("Ethash")
+	HashingAlgorithmSha256 = HashingAlgorithm("SHA-256")
+)
