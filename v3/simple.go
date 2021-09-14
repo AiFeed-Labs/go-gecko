@@ -50,6 +50,29 @@ func (c *Client) SimplePrice(ids []string, vsCurrencies []string) (*map[string]m
 	return &t, nil
 }
 
+func (c *Client) SimpleTokenPrices(platformID string, contracts, vsCurrencies []string) (*map[string]map[string]float64, error) {
+	params := url.Values{}
+	contractsParam := strings.Join(contracts[:], ",")
+	vsCurrenciesParam := strings.Join(vsCurrencies[:], ",")
+
+	params.Add("contract_addresses", contractsParam)
+	params.Add("vs_currencies", vsCurrenciesParam)
+
+	url := fmt.Sprintf("%s/simple/token_price/%s?%s", baseURL, platformID, params.Encode())
+	resp, err := c.MakeReq(url)
+	if err != nil {
+		return nil, err
+	}
+
+	t := make(map[string]map[string]float64)
+	err = json.Unmarshal(resp, &t)
+	if err != nil {
+		return nil, err
+	}
+
+	return &t, nil
+}
+
 // SimpleSupportedVSCurrencies /simple/supported_vs_currencies
 func (c *Client) SimpleSupportedVSCurrencies() (*types.SimpleSupportedVSCurrencies, error) {
 	url := fmt.Sprintf("%s/simple/supported_vs_currencies", baseURL)
