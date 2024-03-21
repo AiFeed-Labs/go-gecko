@@ -4,19 +4,42 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"time"
+
+	"go.uber.org/ratelimit"
 )
 
 // Client struct
 type Client struct {
-	httpClient *http.Client
+	httpClient  *http.Client
+	rateLimiter ratelimit.Limiter
 }
 
 // NewClient create new client object
 func NewClient(httpClient *http.Client) *Client {
-	if httpClient == nil {
-		httpClient = http.DefaultClient
+	return newClientWithLimiter(httpClient, ratelimit.New(30, ratelimit.Per(time.Minute)))
+}
+
+func newClientWithLimiter(cli *http.Client, limiter ratelimit.Limiter) *Client {
+	if cli == nil {
+		cli = http.DefaultClient
 	}
-	return &Client{httpClient: httpClient}
+	if limiter == nil {
+		limiter = ratelimit.NewUnlimited()
+	}
+
+	return &Client{
+		httpClient:  cli,
+		rateLimiter: limiter,
+	}
+}
+
+func NewLimitClient(b int, every time.Duration, cli *http.Client) *Client {
+	var limiter ratelimit.Limiter
+	if every > 0 && b > 0 {
+		limiter = ratelimit.New(b, ratelimit.Per(every))
+	}
+	return newClientWithLimiter(cli, limiter)
 }
 
 // helper
@@ -44,6 +67,9 @@ func (c *Client) MakeReq(url string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	c.rateLimiter.Take()
+
 	resp, err := doReq(req, c.httpClient)
 	if err != nil {
 		return nil, err
