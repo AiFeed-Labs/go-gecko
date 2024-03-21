@@ -20,7 +20,7 @@ func (c *Client) Exchanges(perPage int, page int) (types.ExchangesDetail, error)
 	params.Add("per_page", format.Int2String(perPage))
 	params.Add("page", format.Int2String(page))
 
-	url := fmt.Sprintf("%s/exchanges?%s", baseURL, params.Encode())
+	url := fmt.Sprintf("%s/exchanges?%s", BaseURL, params.Encode())
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err
@@ -35,7 +35,7 @@ func (c *Client) Exchanges(perPage int, page int) (types.ExchangesDetail, error)
 
 // Exchanges list, no pagination required
 func (c *Client) ExchangesList() (types.ExchangesBase, error) {
-	url := fmt.Sprintf("%s/exchanges/list", baseURL)
+	url := fmt.Sprintf("%s/exchanges/list", BaseURL)
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err
@@ -55,7 +55,7 @@ func (c *Client) ExchangeIDTickers(exchangeID string, coinIDs []string) (*types.
 
 	params.Add("coin_ids", coindIDsParam)
 
-	url := fmt.Sprintf("%s/exchanges/%s/tickers?%s", baseURL, exchangeID, params.Encode())
+	url := fmt.Sprintf("%s/exchanges/%s/tickers?%s", BaseURL, exchangeID, params.Encode())
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err

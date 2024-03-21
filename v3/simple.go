@@ -35,7 +35,7 @@ func (c *Client) SimplePrice(ids []string, vsCurrencies []string) (map[string]ma
 	params.Add("ids", idsParam)
 	params.Add("vs_currencies", vsCurrenciesParam)
 
-	url := fmt.Sprintf("%s/simple/price?%s", baseURL, params.Encode())
+	url := fmt.Sprintf("%s/simple/price?%s", BaseURL, params.Encode())
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err
@@ -58,7 +58,7 @@ func (c *Client) SimpleTokenPrices(platformID string, contracts, vsCurrencies []
 	params.Add("contract_addresses", contractsParam)
 	params.Add("vs_currencies", vsCurrenciesParam)
 
-	url := fmt.Sprintf("%s/simple/token_price/%s?%s", baseURL, platformID, params.Encode())
+	url := fmt.Sprintf("%s/simple/token_price/%s?%s", BaseURL, platformID, params.Encode())
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err
@@ -75,7 +75,7 @@ func (c *Client) SimpleTokenPrices(platformID string, contracts, vsCurrencies []
 
 // SimpleSupportedVSCurrencies /simple/supported_vs_currencies
 func (c *Client) SimpleSupportedVSCurrencies() (*types.SimpleSupportedVSCurrencies, error) {
-	url := fmt.Sprintf("%s/simple/supported_vs_currencies", baseURL)
+	url := fmt.Sprintf("%s/simple/supported_vs_currencies", BaseURL)
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err

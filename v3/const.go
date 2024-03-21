@@ -1,3 +1,3 @@
 package coingecko
 
-var baseURL = "https://api.coingecko.com/api/v3"
+const BaseURL = "https://api.coingecko.com/api/v3"

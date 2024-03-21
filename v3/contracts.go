@@ -25,7 +25,7 @@ func (c *Client) CoinContract(networkID, contract string,
 	params.Add("community_data", format.Bool2String(communityData))
 	params.Add("developer_data", format.Bool2String(developerData))
 	params.Add("sparkline", format.Bool2String(sparkline))
-	url := fmt.Sprintf("%s/coins/%s/contract/%s?%s", baseURL, networkID, contract, params.Encode())
+	url := fmt.Sprintf("%s/coins/%s/contract/%s?%s", BaseURL, networkID, contract, params.Encode())
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err

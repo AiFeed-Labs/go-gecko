@@ -12,7 +12,7 @@ import (
 
 // CoinsList /coins/list
 func (c *Client) CoinsList() (types.CoinList, error) {
-	url := fmt.Sprintf("%s/coins/list", baseURL)
+	url := fmt.Sprintf("%s/coins/list", BaseURL)
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err
@@ -57,7 +57,7 @@ func (c *Client) CoinsMarket(vsCurrency string, ids []string, order string, perP
 		priceChangePercentageParam := strings.Join(priceChangePercentage[:], ",")
 		params.Add("price_change_percentage", priceChangePercentageParam)
 	}
-	url := fmt.Sprintf("%s/coins/markets?%s", baseURL, params.Encode())
+	url := fmt.Sprintf("%s/coins/markets?%s", BaseURL, params.Encode())
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err
@@ -83,7 +83,7 @@ func (c *Client) CoinsID(id string, localization bool, tickers bool, marketData 
 	params.Add("community_data", format.Bool2String(communityData))
 	params.Add("developer_data", format.Bool2String(developerData))
 	params.Add("sparkline", format.Bool2String(sparkline))
-	url := fmt.Sprintf("%s/coins/%s?%s", baseURL, id, params.Encode())
+	url := fmt.Sprintf("%s/coins/%s?%s", BaseURL, id, params.Encode())
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err
@@ -106,7 +106,7 @@ func (c *Client) CoinsIDTickers(id string, page int) (*types.CoinsIDTickers, err
 	if page > 0 {
 		params.Add("page", format.Int2String(page))
 	}
-	url := fmt.Sprintf("%s/coins/%s/tickers?%s", baseURL, id, params.Encode())
+	url := fmt.Sprintf("%s/coins/%s/tickers?%s", BaseURL, id, params.Encode())
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err
@@ -128,7 +128,7 @@ func (c *Client) CoinsIDHistory(id string, date string, localization bool) (*typ
 	params.Add("date", date)
 	params.Add("localization", format.Bool2String(localization))
 
-	url := fmt.Sprintf("%s/coins/%s/history?%s", baseURL, id, params.Encode())
+	url := fmt.Sprintf("%s/coins/%s/history?%s", BaseURL, id, params.Encode())
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err
@@ -151,7 +151,7 @@ func (c *Client) CoinsIDMarketChart(id string, vs_currency string, days string) 
 	params.Add("vs_currency", vs_currency)
 	params.Add("days", days)
 
-	url := fmt.Sprintf("%s/coins/%s/market_chart?%s", baseURL, id, params.Encode())
+	url := fmt.Sprintf("%s/coins/%s/market_chart?%s", BaseURL, id, params.Encode())
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err

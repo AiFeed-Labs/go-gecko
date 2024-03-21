@@ -9,7 +9,7 @@ import (
 
 // Ping /ping endpoint
 func (c *Client) Ping() (*types.Ping, error) {
-	url := fmt.Sprintf("%s/ping", baseURL)
+	url := fmt.Sprintf("%s/ping", BaseURL)
 	resp, err := c.MakeReq(url)
 	if err != nil {
 		return nil, err
