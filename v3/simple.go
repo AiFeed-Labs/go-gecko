@@ -18,7 +18,7 @@ func (c *Client) SimpleSinglePrice(id string, vsCurrency string) (*types.SimpleS
 	if err != nil {
 		return nil, err
 	}
-	curr := (*t)[id]
+	curr := t[id]
 	if len(curr) == 0 {
 		return nil, fmt.Errorf("id or vsCurrency not existed")
 	}
@@ -27,7 +27,7 @@ func (c *Client) SimpleSinglePrice(id string, vsCurrency string) (*types.SimpleS
 }
 
 // SimplePrice /simple/price Multiple ID and Currency (ids, vs_currencies)
-func (c *Client) SimplePrice(ids []string, vsCurrencies []string) (*map[string]map[string]float64, error) {
+func (c *Client) SimplePrice(ids []string, vsCurrencies []string) (map[string]map[string]float64, error) {
 	params := url.Values{}
 	idsParam := strings.Join(ids[:], ",")
 	vsCurrenciesParam := strings.Join(vsCurrencies[:], ",")
@@ -47,10 +47,10 @@ func (c *Client) SimplePrice(ids []string, vsCurrencies []string) (*map[string]m
 		return nil, err
 	}
 
-	return &t, nil
+	return t, nil
 }
 
-func (c *Client) SimpleTokenPrices(platformID string, contracts, vsCurrencies []string) (*map[string]map[string]float64, error) {
+func (c *Client) SimpleTokenPrices(platformID string, contracts, vsCurrencies []string) (map[string]map[string]float64, error) {
 	params := url.Values{}
 	contractsParam := strings.Join(contracts[:], ",")
 	vsCurrenciesParam := strings.Join(vsCurrencies[:], ",")
@@ -70,7 +70,7 @@ func (c *Client) SimpleTokenPrices(platformID string, contracts, vsCurrencies []
 		return nil, err
 	}
 
-	return &t, nil
+	return t, nil
 }
 
 // SimpleSupportedVSCurrencies /simple/supported_vs_currencies

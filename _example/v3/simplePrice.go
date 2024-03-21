@@ -16,8 +16,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	bitcoin := (*sp)["bitcoin"]
-	eth := (*sp)["ethereum"]
+	bitcoin := sp["bitcoin"]
+	eth := sp["ethereum"]
 	fmt.Println(fmt.Sprintf("Bitcoin is worth %f usd (myr %f)", bitcoin["usd"], bitcoin["myr"]))
 	fmt.Println(fmt.Sprintf("Ethereum is worth %f usd (myr %f)", eth["usd"], eth["myr"]))
 }

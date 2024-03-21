@@ -59,8 +59,8 @@ func TestSimplePrice(t *testing.T) {
 		t.Errorf("SimplePrice failed: %v", err)
 		t.FailNow()
 	}
-	bitcoin := (*sp)["bitcoin"]
-	eth := (*sp)["ethereum"]
+	bitcoin := sp["bitcoin"]
+	eth := sp["ethereum"]
 
 	if bitcoin["usd"] != 5005.73 || bitcoin["myr"] != 20474 {
 		t.Error("SimplePrice bitcoin rsp not right")
@@ -98,7 +98,7 @@ func TestCoinsList(t *testing.T) {
 		t.Errorf("CoinsList failed: %v", err)
 		t.FailNow()
 	}
-	item := (*list)[0]
+	item := list[0]
 	if item.ID != "01coin" {
 		t.Error("CoinsList rsp not right")
 		t.FailNow()
