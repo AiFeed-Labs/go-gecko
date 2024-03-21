@@ -1,7 +1,7 @@
 package coingecko
 
 import (
-	"io/ioutil"
+	"io"
 	"os"
 	"testing"
 
@@ -113,7 +113,7 @@ func setupGock(filename string, url string) error {
 	}
 	defer testJSON.Close()
 
-	testByte, err := ioutil.ReadAll(testJSON)
+	testByte, err := io.ReadAll(testJSON)
 	if err != nil {
 		return err
 	}
