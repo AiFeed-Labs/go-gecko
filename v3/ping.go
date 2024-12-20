@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/billzong/go-gecko/v3/types"
+	"github.com/AiFeed-Labs/go-gecko/v3/types"
 )
 
 // Ping /ping endpoint

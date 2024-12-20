@@ -1,4 +1,4 @@
-module github.com/billzong/go-gecko
+module github.com/AiFeed-Labs/go-gecko
 
 go 1.16
 

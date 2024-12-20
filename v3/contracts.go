@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/billzong/go-gecko/format"
-	"github.com/billzong/go-gecko/v3/types"
+	"github.com/AiFeed-Labs/go-gecko/format"
+	"github.com/AiFeed-Labs/go-gecko/v3/types"
 )
 
 // Contract Coin info from contract address

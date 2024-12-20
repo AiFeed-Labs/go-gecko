@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	gecko "github.com/billzong/go-gecko/v3"
+	gecko "github.com/AiFeed-Labs/go-gecko/v3"
 )
 
 func main() {
